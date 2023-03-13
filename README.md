@@ -1,6 +1,7 @@
 # Video-Face-Extractor-and-Clusterer
 Code that extracts the faces from a video every second and classifies them based on how similar they look.
 
+- [ ] Write tests for all aforementioned functionality.
 - [ ] Create function that checks if a video has been clustered from a database 
 - [ ] If the video has not been clustered, function downloads the videos extracts the face of every face in a photo and saves the photo of the face in this format
 - [ ] Make the code save the face photo in the format [video title]_[timestamp]_[order in which face was captured].png example [Avatar]_[189]_[3].png
