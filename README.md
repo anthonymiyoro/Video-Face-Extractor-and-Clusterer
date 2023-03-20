@@ -13,6 +13,9 @@ Code that extracts the faces from a video every second and classifies them based
 - [ ] Make code that does classification on the photos extracted above.
 - [ ] Write tests for the above functionality.
 
+- [ ] Create documentation for the code written so far.
+- [ ] Choose an appropriate license for the project.
+
 - [ ] Create function that checks if a video has been clustered from a database.
 - [ ] If the video has not been clustered, function downloads the videos extracts the face of every face in a photo and saves the photo of the face in this format.
 
