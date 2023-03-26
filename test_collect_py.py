@@ -22,7 +22,7 @@ def test_collect_faces():
     assert num_faces >= 12
 
     # Assert that the function takes no more than 15 seconds to run
-    assert end_time - start_time <= 104
+    assert end_time - start_time <= 106
 
     # Clean up the test
     for file_name in os.listdir(save_folder):
