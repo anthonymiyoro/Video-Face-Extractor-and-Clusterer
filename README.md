@@ -23,7 +23,8 @@ Code that extracts the faces from a video every second and classifies them based
 - [ ] Create code that runs the above functionality in a serverless funciton and saves them to an S3 storage bucket.
 - [ ] Modify the code above to extract all the face photos from an S3 storage to a serverless function.
 
-
+- [ ] Add face classification functionality.
+- [ ] Add tests and documentation for this.
 
 
 https://github.com/varun-suresh/Clustering
