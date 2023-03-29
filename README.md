@@ -7,7 +7,7 @@ Code that extracts the faces from a video every second and classifies them based
 - [x] Create tests for the above functionality.
 
 - [ ] Put test code in a tests folder and make sure already written tests still work.
-- [ ] Set up a CI/CD pipeline where code does not push to github until every test file in the tests folder passes.
+- [x] Set up a CI/CD pipeline where code does not push to github until every test file in the tests folder passes.
 - [ ] Make face extraction take less than n seconds to complete where n is the length of video in seconds. (A 1 minute video should take less than 1 minute to extract faces if possible.)
 
 - [ ] Create code that clusters a bunch of face photos with good accuracy (85% and above).
