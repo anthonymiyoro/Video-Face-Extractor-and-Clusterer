@@ -1,9 +1,17 @@
 import os
 import time
-import pytest
-import cv2
+import sys
 
+# Get the absolute path to the top-level directory
+project_dir = os.path.abspath('Video-Face-Extractor-and-Clusterer')
+
+# Add the top-level directory to the Python module search path
+sys.path.insert(0, project_dir)
+
+# Import the collect_face function from the video_extract module
 from video_extract import collect_faces
+
+
 
 def test_collect_faces():
     # Set up the test

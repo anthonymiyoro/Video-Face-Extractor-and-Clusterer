@@ -2,6 +2,7 @@ import cv2
 import os
 import time
 
+
 # Load the video file
 # Replace video file with a video of your choice
 video_file = "one_minute.mp4"

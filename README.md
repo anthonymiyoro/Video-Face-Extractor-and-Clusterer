@@ -7,11 +7,16 @@ Code that extracts the faces from a video every second and classifies them based
 - [x] Create tests for the above functionality.
 
 - [ ] Put test code in a tests folder and make sure already written tests still work.
-- [ ] Set up a CI/CD pipeline where code does not push to github until every test file in the tests folder passes.
+- [x] Set up a CI/CD pipeline where code does not push to github until every test file in the tests folder passes.
+- [x] Make face extraction take less than n seconds to complete where n is the length of video in seconds. (A 1 minute video should take less than 1 minute to extract faces if possible.)
 
-- [ ] Create code that classifies a bunch of face photos with good accuracy (85% and above).
-- [ ] Make code that does classification on the photos extracted above.
+- [x] Create code that clusters a bunch of face photos with good accuracy (85% and above).
+- [x] Make code that does clustering on the photos extracted above.
 - [ ] Write tests for the above functionality.
+
+- [ ] Add face classification functionality.
+- [ ] Add tests and documentation for this.
+
 
 - [ ] Create documentation for the code written so far.
 - [ ] Choose an appropriate license for the project.
@@ -21,3 +26,5 @@ Code that extracts the faces from a video every second and classifies them based
 
 - [ ] Create code that runs the above functionality in a serverless funciton and saves them to an S3 storage bucket.
 - [ ] Modify the code above to extract all the face photos from an S3 storage to a serverless function.
+
+https://github.com/varun-suresh/Clustering
