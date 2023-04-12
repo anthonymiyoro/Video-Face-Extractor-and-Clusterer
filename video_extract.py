@@ -9,9 +9,8 @@ video_file = "one_minute.mp4"
 # Create a directory to store extracted faces
 output_folder = "extracted_faces"
 
-def collect_faces(video_file, output_folder):
+def collect_faces(video_file, output_folder, frame_skip):
     cap = cv2.VideoCapture(video_file)
-
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -20,26 +19,21 @@ def collect_faces(video_file, output_folder):
     frame_count = 0
     face_count = 0
     start_time = time.time()
-    fps = cap.get(cv2.CAP_PROP_FPS)
 
-    # Loop through each second of the video
+    # Create the face cascade outside of the loop
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+
     while True:
-        # Read the next second of frames
-        frames = []
-        for i in range(int(fps)):
-            ret, frame = cap.read()
-            if not ret:
-                break
-            frames.append(frame)
+        # Read a frame
+        ret, frame = cap.read()
 
         # Exit the loop if there are no more frames to read
-        if not frames:
+        if not ret:
             break
 
-        # Extract faces from each frame in the second
-        for frame in frames:
+        # Process only if frame_count is a multiple of (frame_skip + 1)
+        if frame_count % (frame_skip + 1) == 0:
             # Extract faces from the frame
-            face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
 
@@ -49,11 +43,11 @@ def collect_faces(video_file, output_folder):
                 cv2.imwrite(os.path.join(output_folder, "face_{:04d}.png".format(face_count)), face)
                 face_count += 1
 
-        # Increment the frame count
-        frame_count += int(fps)
+            # Display progress
+            print("Processed frame {}".format(frame_count))
 
-        # Display progress
-        print("Processed {} seconds of video".format(frame_count // fps))
+        # Increment the frame count
+        frame_count += 1
 
     # Release the video capture object
     cap.release()
@@ -62,4 +56,4 @@ def collect_faces(video_file, output_folder):
     end_time = time.time()
     print("Time taken: {:.2f} seconds".format(end_time - start_time))
 
-collect_faces(video_file, output_folder)
+collect_faces(video_file, output_folder, frame_skip=5)
