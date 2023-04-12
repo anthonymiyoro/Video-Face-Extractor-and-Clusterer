@@ -3,7 +3,7 @@ import time
 import pytest
 import cv2
 
-from video_extract import collect_faces
+from extract_faces_from_video import collect_faces
 
 def test_collect_faces():
     # Set up the test
