@@ -1,6 +1,14 @@
 # Video-Face-Extractor-and-Clusterer
 Code that extracts the faces from a video every second and classifies them based on how similar they look.
 
+Run test collect.py to collect the faces from a video and save them to a folder.
+
+To test this functionality, install pytest and OpenCv then run the following command in the terminal.
+
+```bash
+python3 -m pytest
+```
+
 - [x] Make the code save the face photo in the format [video title]_[timestamp]_[order in which face was captured].png example [Avatar]_[189]_[3].png
 - [x] Make the code save the photos to an existing or if not avaibale a new folder with its name as the title of the video.
 - [x] Create code that loops through every second of a video file and does the functionality above.
