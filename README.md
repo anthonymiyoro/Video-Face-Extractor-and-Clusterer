@@ -1,12 +1,16 @@
-# Video-Face-Extractor-and-Clusterer
-
-Code that extracts the faces from a video every second and classifies them based on how similar they look.
-
 ## Documentation for Face Extraction from Video Code
 
 ### Overview
 
 The provided code extracts faces from a given video file and saves each extracted face as a separate image file in a specified output folder. The code uses the OpenCV library to perform face detection and image processing.
+
+
+### Requirements
+
+- Python 3
+- OpenCV library (cv2)
+
+All required libraries are available from the requirements.txt file
 
 ### How to use the code
 
@@ -45,6 +49,13 @@ To use the code, first specify the path to the video file from which you want to
 
 10. **Displaying Processing Time**: The code calculates the total time taken to process the video and displays it.
 
+To run the code, simply call the `collect_faces` function with the appropriate arguments. For example:
+
+```python
+collect_faces(video_file="one_minute.mp4", output_folder="extracted_faces", frame_skip=5)
+```
+
+This will extract faces from the video file "one_minute.mp4" and save them in the "extracted_faces" folder, processing every 6th frame.
 To run the code, simply call the `collect_faces` function with the appropriate arguments. For example:
 
 ```python
