@@ -1,59 +1,82 @@
+# Import the necessary libraries
 import cv2
 import os
 import time
 
-# Load the video file
-# Replace video file with a video of your choice
-video_file = "one_minute.mp4"
-
-# Create a directory to store extracted faces
-output_folder = "extracted_faces"
-
-def collect_faces(video_file, output_folder, frame_skip):
-    cap = cv2.VideoCapture(video_file)
-
+# Function to collect faces from a video
+def collect_faces(video_file, output_folder, frame_skip=5):
+    # Create the output folder if it doesn't exist
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    # Initialize variables
-    frame_count = 0
+    # Load the video file
+    video_capture = cv2.VideoCapture(video_file)
+
+    # Load a pre-trained face detector
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+    # Get the frames per second of the video
+    fps = video_capture.get(cv2.CAP_PROP_FPS)
+
+    # Get the title of the video (excluding file extension)
+    video_title = os.path.splitext(os.path.basename(video_file))[0]
+
+    # Initialize variables to keep track of the frame number and face count
+    frame_number = 0
     face_count = 0
-    start_time = time.time()
 
-    # Create the face cascade outside of the loop
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    # Variable to store the second of video
+    current_second = -1
 
+    # Loop through each frame in the video
     while True:
-        # Read a frame
-        ret, frame = cap.read()
-
-        # Exit the loop if there are no more frames to read
+        # Read the next frame
+        ret, frame = video_capture.read()
+        
+        # Break the loop if we have reached the end of the video
         if not ret:
             break
 
-        # Process only if frame_count is a multiple of (frame_skip + 1)
-        if frame_count % (frame_skip + 1) == 0:
-            # Extract faces from the frame
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+        # Increment the frame number
+        frame_number += 1
 
-            # Save each face as an image in the output folder
-            for (x, y, w, h) in faces:
-                face = frame[y:y+h, x:x+w]
-                cv2.imwrite(os.path.join(output_folder, "face_{:04d}.png".format(face_count)), face)
-                face_count += 1
+        # Skip frames for faster processing
+        if frame_number % frame_skip != 0:
+            continue
 
-            # Display progress
-            print("Processed frame {}".format(frame_count))
+        # Detect faces in the frame
+        gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
-        # Increment the frame count
-        frame_count += 1
+        # Calculate the second of video
+        second = int(frame_number / fps)
+
+        # Update face count if we are in a new second of video
+        if current_second != second:
+            current_second = second
+            face_count = 0
+
+        # Save the faces to the output folder
+        for (x, y, w, h) in faces:
+            face_count += 1
+            face_image = frame[y:y+h, x:x+w]
+
+            # Save the face using the specified naming format
+            face_filename = f"{video_title}_{second}_{face_count}.jpg"
+            face_filepath = os.path.join(output_folder, face_filename)
+            cv2.imwrite(face_filepath, face_image)
 
     # Release the video capture object
-    cap.release()
+    video_capture.release()
 
-    # Display the time taken to process the video
-    end_time = time.time()
-    print("Time taken: {:.2f} seconds".format(end_time - start_time))
+# Define the path to the video file and output folder
+# Note: Please update the paths accordingly before running the code
+video_file = "one_minute.mp4"
+output_folder = "face_folder"
 
+# Call the function to collect faces from the video
+# Note: If you want to skip more or fewer frames, you can specify the frame_skip parameter
 collect_faces(video_file, output_folder, frame_skip=5)
+
+# Display a message indicating the successful execution of the code
+"Faces collected and saved successfully with the specified naming format."

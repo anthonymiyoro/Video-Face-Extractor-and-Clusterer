@@ -1,7 +1,7 @@
 ## Documentation for Face Extraction from Video Code
 
-### Overview
 
+### Overview
 The provided code extracts faces from a given video file and saves each extracted face as a separate image file in a specified output folder. The code uses the OpenCV library to perform face detection and image processing.
 
 
