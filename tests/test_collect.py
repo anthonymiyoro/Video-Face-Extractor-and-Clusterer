@@ -1,16 +1,17 @@
 import os
-import time
 import sys
+import time
 
 # Get the absolute path to the top-level directory
-project_dir = os.path.abspath('Video-Face-Extractor-and-Clusterer')
+project_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(project_dir)
+required_module_dir = os.path.join(parent_dir, 'Video-Face-Extractor-and-Clusterer')
 
-# Add the top-level directory to the Python module search path
-sys.path.insert(0, project_dir)
+# Add the top-level directory to Python module search path
+sys.path.insert(0, required_module_dir)
 
 # Import the collect_face function from the video_extract module
-from video_extract import collect_faces
-
+from extract_faces_from_video import collect_faces
 
 
 def test_collect_faces():
@@ -22,7 +23,7 @@ def test_collect_faces():
 
     # Call the function and measure how long it takes
     start_time = time.time()
-    collect_faces(video_path, save_folder)
+    collect_faces(video_path, save_folder, 5)
     end_time = time.time()
 
     # Assert that the function produces at least 12 faces
