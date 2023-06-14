@@ -71,10 +71,9 @@ def collect_faces(video_file, output_folder, frame_skip=5):
 
 # Define the path to the video file and output folder
 # Note: Please update the paths accordingly before running the code
-video_file = "one_minute.mp4"
+video_file = "videos/one_minute.mp4"
 output_folder = "face_folder"
 
-# Call the function to collect faces from the video
-# Note: If you want to skip more or fewer frames, you can specify the frame_skip parameter
-collect_faces(video_file, output_folder, frame_skip=5)
+# Uncomment the line below to collect faces from the video
+# collect_faces(video_file, output_folder, frame_skip=5) # Note: If you want to skip more or fewer frames, you can specify the frame_skip parameter
 

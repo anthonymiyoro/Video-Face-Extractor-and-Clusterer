@@ -17,7 +17,7 @@ from extract_faces_from_video import collect_faces
 
 def test_collect_faces():
     # Set up the test
-    video_path = 'one_minute.mp4'
+    video_path = "videos/one_minute.mp4"
     save_folder = 'extracted_faces'
     if not os.path.exists(save_folder):
         os.mkdir(save_folder)
