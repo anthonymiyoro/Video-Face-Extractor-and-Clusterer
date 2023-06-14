@@ -26,3 +26,9 @@ def test_cluster_faces():
         for file in image_files:
             os.remove(file)
         os.rmdir(folder)
+    
+    # # TO DO!!!!! Add code to clean up the faces collected by the test_extract_faces_from_video.py file
+    # for file_name in os.listdir(save_folder):
+    #     os.remove(os.path.join(save_folder, file_name))
+    # os.rmdir(save_folder)
+
