@@ -43,7 +43,7 @@ def test_collect_faces():
         assert pattern.match(file_name), f"Filename '{file_name}' does not match the expected format."
         print(f"Filename '{file_name}' matches the expected format.")
 
-    # Clean up the test
-    for file_name in os.listdir(save_folder):
-        os.remove(os.path.join(save_folder, file_name))
-    os.rmdir(save_folder)
+    # # Clean up the test
+    # for file_name in os.listdir(save_folder):
+    #     os.remove(os.path.join(save_folder, file_name))
+    # os.rmdir(save_folder)
