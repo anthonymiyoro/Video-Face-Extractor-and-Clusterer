@@ -1,34 +1,27 @@
 import os
 import glob
+
+# Import the function from face_clustering.py that you want to test
+# For example, if the function is named 'cluster_faces'
 from face_clustering import cluster_faces
 
-def test_cluster_faces():
-    # Define input and output paths for testing
-    input_folder = "extracted_faces"
-    output_folder = "clustered_faces"
-    expected_clusters = 5
+def test_face_clustering_function():
+    cluster_faces()  # Assumes the function takes no arguments
 
-    # Run the face clustering function
-    cluster_faces(input_folder, output_folder, n_clusters=expected_clusters)
+    # Check if the output directory is created
+    assert os.path.isdir('clustered_faces'), "Output directory 'clustered_faces' does not exist."
 
-    # Check if the correct number of cluster folders have been created
-    cluster_folders = glob.glob(os.path.join(output_folder, "Cluster_*"))
-    assert len(cluster_folders) == expected_clusters
+    # Check if the cluster subdirectories are created
+    for i in range(5):  # Assumes 5 clusters as in your script
+        cluster_dir = f'clustered_faces/Cluster_{i}'
+        assert os.path.isdir(cluster_dir), f"Cluster directory {cluster_dir} does not exist."
 
-    # Check if each cluster folder has at least one image
-    for folder in cluster_folders:
-        image_files = glob.glob(os.path.join(folder, "*.jpg"))
-        assert len(image_files) > 0
-
-    # Clean up the output folder (you can comment this out if you want to keep the clustered_faces for inspection)
-    for folder in cluster_folders:
-        image_files = glob.glob(os.path.join(folder, "*.jpg"))
-        for file in image_files:
-            os.remove(file)
-        os.rmdir(folder)
+        # Check if each cluster subdirectory contains image files
+        cluster_images = glob.glob(f'{cluster_dir}/*.jpg')
+        assert len(cluster_images) > 0, f"No images found in {cluster_dir}"
+        
     
-    # # TO DO!!!!! Add code to clean up the faces collected by the test_extract_faces_from_video.py file
+    # # TO DO!!!!! Add code to clean up the faces collected by the test_extract_faces_from_video.py file and the images and folders created by this test
     # for file_name in os.listdir(save_folder):
     #     os.remove(os.path.join(save_folder, file_name))
     # os.rmdir(save_folder)
-
