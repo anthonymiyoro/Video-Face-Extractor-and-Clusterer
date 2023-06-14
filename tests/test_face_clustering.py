@@ -4,8 +4,8 @@ from face_clustering import cluster_faces
 
 def test_cluster_faces():
     # Define input and output paths for testing
-    input_folder = "test_data/extracted_faces"
-    output_folder = "test_data/clustered_faces"
+    input_folder = "extracted_faces"
+    output_folder = "clustered_faces"
     expected_clusters = 5
 
     # Run the face clustering function
