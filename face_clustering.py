@@ -28,11 +28,17 @@ def cluster_faces(folder_path, target_width=128, target_height=128, n_clusters=5
     # Load and resize the face images
     face_images, image_paths = load_faces(folder_path)
 
+    # Check if any face images were loaded
+    if len(face_images) == 0:
+        print("No face images found in the folder.")
+        return
+
     # Convert the face images to a numpy array
     face_images = np.array(face_images)
 
     # Flatten the face images
-    num_samples, height, width, channels = face_images.shape
+    num_samples, height, width = face_images.shape[:3]
+    channels = 3  # Assuming the face images have 3 color channels (BGR)
     face_images_flat = face_images.reshape(num_samples, -1)
 
     # Perform clustering using K-means

@@ -1,11 +1,11 @@
 import os
 import glob
 import sys
-from face_clustering import cluster_faces
 
 # Import the function from face_clustering.py that you want to test
+# For example, if the function is named 'cluster_faces'
 sys.path.append("../")
-
+from face_clustering import cluster_faces
 path = "../extracted_faces"
 
 def test_face_clustering_function():
