@@ -69,14 +69,10 @@ def collect_faces(video_file, output_folder, frame_skip=5):
     # Release the video capture object
     video_capture.release()
 
-# Define the path to the video file and output folder
-# Note: Please update the paths accordingly before running the code
-video_file = "one_minute.mp4"
-output_folder = "face_folder"
-
-# Call the function to collect faces from the video
-# Note: If you want to skip more or fewer frames, you can specify the frame_skip parameter
-collect_faces(video_file, output_folder, frame_skip=5)
-
-# Display a message indicating the successful execution of the code
-"Faces collected and saved successfully with the specified naming format."
+if __name__ == "__main__":
+    # Define the path to the video file and output folder
+    # Note: Please update the paths accordingly before running the code
+    video_file = "videos/one_minute.mp4"
+    output_folder = "extracted_faces"
+    #  Note: If you want to skip more or fewer frames, you can specify the frame_skip parameter
+    collect_faces(video_file, output_folder, frame_skip=5) 
