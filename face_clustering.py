@@ -63,6 +63,9 @@ def cluster_faces(folder_path, target_width=128, target_height=128, n_clusters=5
         print(f"Saved {image_name} to Cluster {cluster_label}")
 
 
-# Usage example
-folder_path = 'extracted_faces'
-cluster_faces(folder_path)
+if __name__ == "__main__":
+    # Usage example
+    folder_path = 'extracted_faces'
+    cluster_faces(folder_path)
+
+
