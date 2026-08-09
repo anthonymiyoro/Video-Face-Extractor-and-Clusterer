@@ -1,3 +1,5 @@
+
+
 ## Documentation for Face Extraction from Video Code
 
 
@@ -14,7 +16,7 @@ All required libraries are available from the requirements.txt file
 
 ### How to use the code
 
-To use the code, first specify the path to the video file from which you want to extract faces. Then specify the name of the output folder where the extracted faces will be saved. Optionally, you can set the `frame_skip` parameter to control how frequently the frames from the video are processed. For example, if `frame_skip` is set to 5, every 6th frame will be processed, and the others will be skipped.
+To use the code, first specify the path to the video file from which you want to extract faces. Then specify the name of the output folder where the extracted faces will be saved. Optionally, you can set the `frame_skip` parameter to control how frequently the frames from the video are processed. For example, if `frame_skip` is set to 5, every 5th frame will be processed, and the others will be skipped.
 
 ### Code Description
 
@@ -38,7 +40,7 @@ To use the code, first specify the path to the video file from which you want to
 8. **Processing Video Frames**: The code enters a loop to process each frame of the video. Within the loop:
    - A frame is read from the video capture object.
    - If there are no more frames to read, the loop exits.
-   - If the `frame_count` is a multiple of `(frame_skip + 1)`, the frame is processed; otherwise, it is skipped.
+   - If the `frame_count` is a multiple of `frame_skip`, the frame is processed; otherwise, it is skipped.
      - The frame is converted to grayscale.
      - The `detectMultiScale` method is used to detect faces in the frame.
      - Each detected face is saved as an image file in the output folder. The filenames are formatted as `face_XXXX.png`, where `XXXX` is the face count.
@@ -55,14 +57,14 @@ To run the code, simply call the `collect_faces` function with the appropriate a
 collect_faces(video_file="one_minute.mp4", output_folder="extracted_faces", frame_skip=5)
 ```
 
-This will extract faces from the video file "one_minute.mp4" and save them in the "extracted_faces" folder, processing every 6th frame.
+This will extract faces from the video file "one_minute.mp4" and save them in the "extracted_faces" folder, processing every 5th frame.
 To run the code, simply call the `collect_faces` function with the appropriate arguments. For example:
 
 ```python
 collect_faces(video_file="one_minute.mp4", output_folder="extracted_faces", frame_skip=5)
 ```
 
-This will extract faces from the video file "one_minute.mp4" and save them in the "extracted_faces" folder, processing every 6th frame.
+This will extract faces from the video file "one_minute.mp4" and save them in the "extracted_faces" folder, processing every 5th frame.
 
 
 
@@ -88,4 +90,3 @@ Note: Please refer to the code file and test file for more details on the implem
 
 
 Run test collect.py to collect the faces from a video and save them to a folder.
-
